@@ -8,16 +8,16 @@ GraphicEngine::GraphicEngine(sf::RenderWindow & window)
 
 void GraphicEngine::RequestRender(RenderableObject && object)
 {
-	//renderQueue.push(object);
+	renderQueue.push(object);
 }
 
 void GraphicEngine::RenderScene()
 {
-	window.clear(); /*
+	window.clear(); 
 	while (!renderQueue.empty())
 	{
-		target.draw(spriteMap[renderQueue.top().graphicID]);
+		window.draw(spriteMap[renderQueue.top().graphicID]);
 		renderQueue.pop();
-	}*/ //to be implemented once we get renderQueue up and running
+	}
 	window.display();
 }

@@ -151,14 +151,19 @@
   <ItemGroup>
     <ClCompile Include="src/Main.cpp" />
     <ClCompile Include="src\Core.cpp" />
+    <ClCompile Include="src\EventSystem.cpp" />
     <ClCompile Include="src\GraphicEngine.cpp" />
+    <ClCompile Include="src\State.cpp" />
+    <ClCompile Include="src\StateManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/AudioEngine.h" />
     <ClInclude Include="src/Core.h" />
     <ClInclude Include="src/GraphicEngine.h" />
     <ClInclude Include="src/StateManager.h" />
+    <ClInclude Include="src\EventSystem.h" />
     <ClInclude Include="src\IRenderable.h" />
+    <ClInclude Include="src\State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

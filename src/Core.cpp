@@ -1,5 +1,8 @@
 #include "Core.h"
 
+static unsigned int windowWidth = 800;
+static unsigned int windowHeight = 600;
+
 void Core::Loop()
 {
 	while (window.isOpen())
@@ -16,8 +19,8 @@ void Core::Loop()
 }
 
 Core::Core()
-	: window(sf::VideoMode(200, 200), "Gladiators of Nyquistborgh"), stateManager(),
-	graphics(window), audio()
+	: window(sf::VideoMode(windowWidth, windowHeight), "Gladiators of Nyquistborgh"),
+	graphics(window), audio(), eventSystem(), stateManager(eventSystem)
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
