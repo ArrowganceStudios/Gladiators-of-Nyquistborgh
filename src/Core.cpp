@@ -13,19 +13,39 @@ void Core::Loop()
 			if (event.type == sf::Event::Closed)
 				window.close();
 		}
-		//stateManager.Update(); // TODO
+		while (!eventSystem.IsQueueEmpty())
+		{
+			Event event = eventSystem.Get();
+			switch (event.type)
+			{
+			case EventType::StateChange:
+				stateManager.ChangeState(event.Value.State);
+				break;
+			case EventType::ButtonClicked:
+				break;
+			case EventType::PlayerAction:
+				break;
+			case EventType::PlaySound:
+				break;
+			default:
+				break;
+			}
+		}
+
+		stateManager.Update();
 		graphics.RenderScene();	// calls window.clear() and window.display()
 	}
 }
 
 Core::Core()
 	: window(sf::VideoMode(windowWidth, windowHeight), "Gladiators of Nyquistborgh"),
-	graphics(window), audio(), eventSystem(), stateManager(eventSystem)
+	graphics(window), audio(), eventSystem(), mainMenu(eventSystem, graphics), 
+	stateManager(eventSystem, graphics, &mainMenu)
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
 
-	//stateManager.ChangeState(StateType::MainMenu); //starting state //TBI
+	stateManager.ChangeState(StateType::MainMenu); //starting state //TBI
 }
 
 void Core::Run()

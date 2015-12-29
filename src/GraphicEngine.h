@@ -11,9 +11,9 @@ class GraphicEngine
 public:
 	GraphicEngine(sf::RenderWindow& window);
 
-	GraphicEngine() = delete;
-	GraphicEngine(GraphicEngine const&) = delete;
-	GraphicEngine& operator=(GraphicEngine const&) = delete;
+	//GraphicEngine() = delete;
+	//GraphicEngine(GraphicEngine const&) = delete;
+	//GraphicEngine& operator=(GraphicEngine const&) = delete;
 
 	enum class GraphicID
 	{

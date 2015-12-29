@@ -1,4 +1,7 @@
 #pragma once
+#include "ForwardDeclarations.h"
+#include "EventSystem.h"
+#include "GraphicEngine.h"
 
 enum class StateType
 {
@@ -13,15 +16,16 @@ enum class StateType
 class State
 {
 public:
-	State(StateType type)
-		: type(type) {}
+	State(StateType type, EventSystem& eventSystem, GraphicEngine& graphics);
 
-	//copy constructor and assignment operator to be written (todo)
+	State(State const& other);
+	//State& operator=(State const& other);
 
-	void Update();
+	virtual void Update() = 0;
 
 private:
-	StateType type;
-	//Module& module
-
+	StateType type; //prolly not needed in a fact TODO: remove if unused
+protected:
+	GraphicEngine& graphics;
+	EventSystem& eventSystem;
 };

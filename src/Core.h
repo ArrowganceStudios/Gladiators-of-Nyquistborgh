@@ -3,6 +3,7 @@
 #include "GraphicEngine.h"
 #include "AudioEngine.h"
 #include "EventSystem.h"
+#include "MainMenu.h"
 
 class Core
 {
@@ -12,6 +13,9 @@ private:
 	GraphicEngine graphics;
 	AudioEngine audio;
 	sf::RenderWindow window;
+
+	//temp
+	MainMenu mainMenu; //delete when datakeeper is implemented
 
 	void Loop();
 
