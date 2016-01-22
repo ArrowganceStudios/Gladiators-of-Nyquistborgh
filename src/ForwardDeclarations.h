@@ -11,3 +11,4 @@ class MainMenu;
 class State;
 enum class StateType;
 class StateManager;
+class DataKeeper;

@@ -1,4 +1,6 @@
 #pragma once
+#include "ForwardDeclarations.h"
+#include "DataKeeper.h"
 #include "StateManager.h"
 #include "GraphicEngine.h"
 #include "AudioEngine.h"
@@ -8,6 +10,7 @@
 class Core
 {
 private:
+	DataKeeper dataKeeper;
 	StateManager stateManager;
 	EventSystem eventSystem;
 	GraphicEngine graphics;

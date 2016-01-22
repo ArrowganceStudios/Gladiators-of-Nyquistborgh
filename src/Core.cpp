@@ -7,6 +7,9 @@ void Core::Loop()
 {
 	while (window.isOpen())
 	{
+		stateManager.Update();
+		graphics.RenderScene();	// calls window.clear() and window.display()
+
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
@@ -22,18 +25,18 @@ void Core::Loop()
 				stateManager.ChangeState(event.Value.State);
 				break;
 			case EventType::ButtonClicked:
-				break;
 			case EventType::PlayerAction:
-				break;
 			case EventType::PlaySound:
+				stateManager.PropagateEvent(event);
+				break;
+			case EventType::ExitProgram:
+				window.close();
 				break;
 			default:
 				break;
 			}
 		}
 
-		stateManager.Update();
-		graphics.RenderScene();	// calls window.clear() and window.display()
 	}
 }
 

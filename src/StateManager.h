@@ -15,7 +15,9 @@ public:
 
 	void ChangeState(StateType type);
 	void Update();
+	void PropagateEvent(const Event &ev);
 private:
+	State *GetCurState() { return state; }	//	in case of changed implementation of current state
 	GraphicEngine& graphics;
 	EventSystem& eventSystem;
 	State* state; //or std::stack

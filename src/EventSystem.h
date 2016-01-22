@@ -1,11 +1,12 @@
 #pragma once
 #include <queue>
 #include "ForwardDeclarations.h"
-#include "State.h"
 #include "Event.h"
 
 class EventSystem
 {
+	friend class Core;	//	EVIL
+
 public:
 	//disable copy
 	EventSystem() = default;
@@ -13,9 +14,9 @@ public:
 	EventSystem& operator=(EventSystem const&) = delete;
 
 	void Add(Event&& event);
-	Event Get();
-	bool IsQueueEmpty() { return events.size() == 0; };
 
 private:
 	std::queue<Event> events;
+	Event Get();
+	bool IsQueueEmpty() { return events.size() == 0; };
 };

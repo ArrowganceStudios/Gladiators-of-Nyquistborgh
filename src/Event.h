@@ -1,5 +1,6 @@
 #pragma once
-#include "State.h"
+#include "ForwardDeclarations.h"
+//#include "State.h"
 
 enum class EventType
 {
@@ -7,7 +8,8 @@ enum class EventType
 	StateChange,
 	ButtonClicked,
 	PlayerAction, //idk bout that
-	PlaySound //idk bout that either
+	PlaySound, //idk bout that either
+	ExitProgram
 };
 
 struct Event

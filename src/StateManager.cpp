@@ -32,3 +32,8 @@ void StateManager::Update()
 {
 	state->Update();
 }
+
+void StateManager::PropagateEvent(const Event &ev)
+{
+	GetCurState()->PushEvent(ev);
+}
