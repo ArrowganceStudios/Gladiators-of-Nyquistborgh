@@ -150,6 +150,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src/Main.cpp" />
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\DataKeeper.cpp" />
     <ClCompile Include="src\EventSystem.cpp" />
@@ -164,6 +165,8 @@
     <ClInclude Include="src/Core.h" />
     <ClInclude Include="src/GraphicEngine.h" />
     <ClInclude Include="src/StateManager.h" />
+    <ClInclude Include="src\BaseTypes.h" />
+    <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\DataKeeper.h" />
     <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\EventSystem.h" />

@@ -4,7 +4,7 @@
 
 void StateManager::ChangeState(StateType type)
 {
-	static MainMenu mainMenu = MainMenu(eventSystem, graphics); //hacky shit until we have datakeeper
+	//static MainMenu mainMenu = MainMenu(eventSystem, graphics); //hacky shit until we have datakeeper
 	static GameMenu gameMenu = GameMenu(eventSystem, graphics);	//hacky shit until we have datakeeper
 
 	switch (type)
@@ -12,7 +12,7 @@ void StateManager::ChangeState(StateType type)
 	case StateType::None:
 		break;
 	case StateType::MainMenu:
-		state = &mainMenu;
+		//state = &mainMenu;
 		break;
 	case StateType::GameMenu:
 		state = &gameMenu;
@@ -36,4 +36,9 @@ void StateManager::Update()
 void StateManager::PropagateEvent(const Event &ev)
 {
 	GetCurState()->PushEvent(ev);
+}
+
+void StateManager::PropagateInput(const sf::Event & ev)
+{
+	GetCurState()->SetInput(ev);
 }

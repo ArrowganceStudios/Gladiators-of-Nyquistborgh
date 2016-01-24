@@ -1,4 +1,5 @@
 #pragma once
+#include "ForwardDeclarations.h"
 #include "State.h"
 
 class GameMenu : public State

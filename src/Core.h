@@ -15,8 +15,9 @@ private:
 	EventSystem eventSystem;
 	GraphicEngine graphics;
 	AudioEngine audio;
-	sf::RenderWindow window;
-
+public:
+	sf::RenderWindow window; //temp
+private:
 	//temp
 	MainMenu mainMenu; //delete when datakeeper is implemented
 

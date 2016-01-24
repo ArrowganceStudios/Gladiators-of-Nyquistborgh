@@ -8,13 +8,17 @@ void Core::Loop()
 	while (window.isOpen())
 	{
 		stateManager.Update();
-		graphics.RenderScene();	// calls window.clear() and window.display()
+		
 
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::MouseButtonPressed ||
+				event.type == sf::Event::MouseButtonReleased ||
+				event.type == sf::Event::MouseMoved)
+				stateManager.PropagateInput(event);
 		}
 		while (!eventSystem.IsQueueEmpty())
 		{
@@ -36,13 +40,14 @@ void Core::Loop()
 				break;
 			}
 		}
-
+		graphics.RenderScene();	// calls window.clear() and window.display()
 	}
 }
 
 Core::Core()
 	: window(sf::VideoMode(windowWidth, windowHeight), "Gladiators of Nyquistborgh"),
-	graphics(window), audio(), eventSystem(), mainMenu(eventSystem, graphics), 
+	dataKeeper(),
+	graphics(window, dataKeeper), audio(), eventSystem(), mainMenu(eventSystem, graphics), 
 	stateManager(eventSystem, graphics, &mainMenu)
 {
 	window.setFramerateLimit(60);
@@ -55,5 +60,7 @@ void Core::Run()
 {
 	//inits
 	//...
+	//graphics.LoadTextures();
+
 	Loop();
 }

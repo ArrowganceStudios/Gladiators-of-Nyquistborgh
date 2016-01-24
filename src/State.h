@@ -24,6 +24,7 @@ public:
 
 	virtual void Update() = 0;
 	void PushEvent(const Event ev) { eventQueue.push(ev); }
+	void SetInput(const sf::Event ev) { input = ev; };
 
 private:
 	StateType type; //prolly not needed in a fact TODO: remove if unused
@@ -31,4 +32,5 @@ private:
 protected:
 	GraphicEngine& graphics;
 	EventSystem& eventSystem;
+	sf::Event input;
 };
