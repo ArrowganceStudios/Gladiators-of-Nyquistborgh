@@ -16,6 +16,11 @@ void Button::SetPosition(sf::Vector2f pos)
 	botRight = { pos.x + 240, pos.y + 90 }; //240 and 90 is the current size, TODO: sort this stuff out
 }
 
+void Button::Init()
+{
+	sid = graphics.RequestSprite(gid, 1);
+}
+
 void Button::Update()
 {
 	InterpretInput();

@@ -1,6 +1,6 @@
 #include "EventSystem.h"
 
-void EventSystem::Add(Event&& event)
+void EventSystem::Add(Event &&event)
 {
 	events.push(event);
 }

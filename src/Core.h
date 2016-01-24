@@ -10,6 +10,7 @@
 class Core
 {
 private:
+//public:
 	DataKeeper dataKeeper;
 	StateManager stateManager;
 	EventSystem eventSystem;
@@ -19,7 +20,7 @@ public:
 	sf::RenderWindow window; //temp
 private:
 	//temp
-	MainMenu mainMenu; //delete when datakeeper is implemented
+	//MainMenu mainMenu; //delete when datakeeper is implemented
 
 	void Loop();
 

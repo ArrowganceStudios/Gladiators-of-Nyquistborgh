@@ -4,9 +4,7 @@
 GraphicEngine::GraphicEngine(sf::RenderWindow & window, DataKeeper& dataKeeper)
 	: window(window), dataKeeper(dataKeeper), _spritesCount(0)
 {
-	textures = dataKeeper.GetTextureTable();
-	sprites = dataKeeper.GetSpriteTable();
-	LoadTextures();
+	
 }
 
 void GraphicEngine::LoadTextures()
@@ -44,6 +42,13 @@ uint8 GraphicEngine::CreateSprite(GraphicID gid)
 {
 	sprites[_spritesCount].setTexture(textures[(int)gid]);
 	return _spritesCount++;
+}
+
+void GraphicEngine::Init()
+{
+	textures = dataKeeper.GetTextureTable();
+	sprites = dataKeeper.GetSpriteTable();
+	LoadTextures();
 }
 
 void GraphicEngine::RenderScene()

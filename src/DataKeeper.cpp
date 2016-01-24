@@ -11,6 +11,15 @@ DataKeeper::DataKeeper()
 	//memory = calloc(1, sizeof(Data));
 
 	GameData = (Data*)memory;
+	
+}
+DataKeeper::~DataKeeper() 
+{ 
+	VirtualFree(memory, sizeof(Data), MEM_RELEASE);
+	//free(memory);
+}
+void DataKeeper::InitData(EventSystem & evtSystem, GraphicEngine & grphEngine)
+{
 	sf::Sprite* sprite = GetSpriteTable();
 	for (uint8 i = 0; i < MAX_SPRITES; ++i)
 	{
@@ -23,9 +32,8 @@ DataKeeper::DataKeeper()
 		texture = new (texture) sf::Texture();
 		texture++;
 	}
+	MainMenu *mm = GetMainMenu();
+	mm = new (mm) MainMenu(evtSystem, grphEngine);
+	GameMenu *gm = GetGameMenu();
+	gm = new (gm) GameMenu(evtSystem, grphEngine);
 }
-DataKeeper::~DataKeeper() 
-{ 
-	VirtualFree(memory, sizeof(Data), MEM_RELEASE);
-	//free(memory);
-};

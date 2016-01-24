@@ -1,5 +1,6 @@
 #pragma once
 #include "ForwardDeclarations.h"
+#include "DataKeeper.h"
 #include "EventSystem.h"
 #include "GraphicEngine.h"
 #include "State.h"
@@ -7,10 +8,10 @@
 class StateManager
 {
 public:
-	StateManager(EventSystem& eventSystem, GraphicEngine& graphics, State* initialState)
+	StateManager(EventSystem& eventSystem, GraphicEngine& graphics, DataKeeper& dataKeeper)
 		: eventSystem(eventSystem),
-		  state(initialState),
-		  graphics(graphics)
+		  graphics(graphics),
+		  dataKeeper(dataKeeper)
 		  {};
 
 	void ChangeState(StateType type);
@@ -21,6 +22,7 @@ private:
 	State *GetCurState() { return state; }	//	in case of changed implementation of current state
 	GraphicEngine& graphics;
 	EventSystem& eventSystem;
+	DataKeeper& dataKeeper;
 	State* state; //or std::stack
 	//^ it has to be a pointer since references cannot be rebounded.
 };

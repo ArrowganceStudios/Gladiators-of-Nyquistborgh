@@ -5,6 +5,7 @@
 #include "SFML\Graphics.hpp"
 #include "SFML\Audio.hpp"
 #include "ForwardDeclarations.h"
+//#include "Core.h"
 #include "MainMenu.h"
 #include "GameMenu.h"
 
@@ -17,6 +18,8 @@ class DataKeeper
 public:
 	DataKeeper();
 	~DataKeeper();
+
+	void InitData(EventSystem &evtSystem, GraphicEngine &grphEngine);
 
 	sf::Sprite *GetSpriteTable() { return GameData->sprites; }
 	sf::Texture *GetTextureTable() { return GameData->textures; }

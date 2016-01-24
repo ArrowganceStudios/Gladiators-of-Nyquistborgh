@@ -11,12 +11,12 @@ public:
 	Button(GraphicEngine& graphics, GraphicEngine::GraphicID gid, std::function<void()> action)
 		: graphics(graphics), action(action), gid(gid)
 	{
-		sid = graphics.RequestSprite(gid, 1);
 	}
 
 	void SetPosition(sf::Vector2f pos);
 	void ChangeTexture(GraphicEngine::GraphicID gid) { if (gid != this->gid) graphics.SetTexture(sid, gid); }
 
+	void Init();
 	void Update();
 	void InterpretInput();
 

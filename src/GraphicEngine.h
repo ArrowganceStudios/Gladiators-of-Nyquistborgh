@@ -55,6 +55,8 @@ public:
 		}
 	};
 
+	void Init();
+
 	void RenderScene();
 private:
 	sf::RenderWindow& window;

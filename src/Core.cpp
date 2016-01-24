@@ -47,8 +47,8 @@ void Core::Loop()
 Core::Core()
 	: window(sf::VideoMode(windowWidth, windowHeight), "Gladiators of Nyquistborgh"),
 	dataKeeper(),
-	graphics(window, dataKeeper), audio(), eventSystem(), mainMenu(eventSystem, graphics), 
-	stateManager(eventSystem, graphics, &mainMenu)
+	graphics(window, dataKeeper), audio(), eventSystem(), 
+	stateManager(eventSystem, graphics, dataKeeper)
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
@@ -61,6 +61,10 @@ void Core::Run()
 	//inits
 	//...
 	//graphics.LoadTextures();
+	dataKeeper.InitData(eventSystem, graphics);
+	graphics.Init();
+	dataKeeper.GetMainMenu()->Init();
+	dataKeeper.GetGameMenu()->Init();
 
 	Loop();
 }
