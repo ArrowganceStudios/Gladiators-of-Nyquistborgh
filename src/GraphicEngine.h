@@ -14,9 +14,8 @@ class GraphicEngine
 public:
 	GraphicEngine(sf::RenderWindow& window, DataKeeper& dataKeeper);
 
-	//GraphicEngine() = delete;
-	//GraphicEngine(GraphicEngine const&) = delete;
-	//GraphicEngine& operator=(GraphicEngine const&) = delete;
+	GraphicEngine(GraphicEngine const&) = delete;
+	GraphicEngine& operator=(GraphicEngine const&) = delete;
 
 	void LoadTextures();
 
@@ -24,7 +23,9 @@ public:
 
 	enum class GraphicID
 	{
-		//stuff
+		//until we'll use spritesheets, the order of button graphics
+		//needs to be preserved, so it can change it's appearance 
+		//according to it's needs
 		MenuBackground,
 		MenuButtonNewGameStatic,
 		MenuButtonNewGameHovered,
@@ -32,6 +33,16 @@ public:
 		MenuButtonQuitStatic,
 		MenuButtonQuitHovered,
 		MenuButtonQuitPressed,
+
+		GameButtonEnterBattleStatic,
+		GameButtonEnterBattleHover,
+		GameButtonEnterBattlePressed,
+		GameButtonEnterShopStatic,
+		GameButtonEnterShopHover,
+		GameButtonEnterShopPressed,
+		GameButtonGoBackStatic,
+		GameButtonGoBackHover,
+		GameButtonGoBackPressed,
 
 		ENUM_SIZE //lil' trick yo
 	};

@@ -6,22 +6,21 @@ void GameMenu::Init()
 	enterShop.Init();
 	enterBattle.Init();
 	goBack.Init();
-	enterShop.SetPosition({ 300, 360 });
-	enterBattle.SetPosition({ 300, 430 });
+	enterShop.SetPosition({ 300, 340 });
+	enterBattle.SetPosition({ 300, 420 });
 	goBack.SetPosition({ 300, 500 });
 }
 
 void GameMenu::Update()
 {
-	enterShop.SetInput(input);
-	enterBattle.SetInput(input);
-	goBack.SetInput(input);
 	enterShop.Update();
 	enterBattle.Update();
 	goBack.Update();
+}
 
-	//test purposes
-	//std::cout << "I'm in gameMenu" << std::endl;
-	//eventSystem.Add(Event(EventType::ExitProgram));
-	//system("pause");
+void GameMenu::SetInput(const sf::Event ev)
+{
+	enterShop.SetInput(ev);
+	enterBattle.SetInput(ev);
+	goBack.SetInput(ev);
 }

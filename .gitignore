@@ -3,3 +3,5 @@ Debug/
 *.sdf
 *.opensdf
 Game.VC.opendb
+*.db
+Thumbs.db

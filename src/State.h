@@ -22,21 +22,19 @@ class State
 public:
 	State(StateType type, EventSystem& eventSystem, GraphicEngine& graphics);
 
-	State(State const& other);
-	//State& operator=(State const& other);
+	State(State const& other) = delete;
+	State& operator=(State const& other) = delete;
 
 	virtual void Init() = 0;
 	virtual void Update() = 0;
+	virtual void SetInput(const sf::Event ev) = 0;
 	void PushEvent(const Event ev) { eventQueue.push(ev); }
-	void SetInput(const sf::Event ev) { input = ev; };
 
 private:
-	StateType type; //prolly not needed in a fact TODO: remove if unused
-	std::queue<Event> eventQueue;	//	TODO: po co
+	std::queue<Event> eventQueue;
 protected:
 	GraphicEngine& graphics;
 	EventSystem& eventSystem;
-	sf::Event input;
 
 	void RequestStateChange(StateType toState);
 	void SendEvent(EventType evType);

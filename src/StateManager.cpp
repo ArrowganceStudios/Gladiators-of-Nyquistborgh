@@ -4,19 +4,14 @@
 
 void StateManager::ChangeState(StateType type)
 {
-	//static MainMenu mainMenu = MainMenu(eventSystem, graphics);	//hacky shit until we have datakeeper
-	//static GameMenu gameMenu = GameMenu(eventSystem, graphics);	//hacky shit until we have datakeeper
-
 	switch (type)
 	{
 	case StateType::None:
 		break;
 	case StateType::MainMenu:
-		//state = &mainMenu;
 		state = dataKeeper.GetMainMenu();
 		break;
 	case StateType::GameMenu:
-		//state = &gameMenu;
 		state = dataKeeper.GetGameMenu();
 		break;
 	case StateType::Intro:

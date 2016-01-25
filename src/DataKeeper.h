@@ -19,6 +19,9 @@ public:
 	DataKeeper();
 	~DataKeeper();
 
+	DataKeeper(DataKeeper const&) = delete;
+	DataKeeper& operator=(DataKeeper const&) = delete;
+
 	void InitData(EventSystem &evtSystem, GraphicEngine &grphEngine);
 
 	sf::Sprite *GetSpriteTable() { return GameData->sprites; }

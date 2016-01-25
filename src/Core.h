@@ -10,17 +10,12 @@
 class Core
 {
 private:
-//public:
 	DataKeeper dataKeeper;
 	StateManager stateManager;
 	EventSystem eventSystem;
 	GraphicEngine graphics;
 	AudioEngine audio;
-public:
-	sf::RenderWindow window; //temp
-private:
-	//temp
-	//MainMenu mainMenu; //delete when datakeeper is implemented
+	sf::RenderWindow window;
 
 	void Loop();
 

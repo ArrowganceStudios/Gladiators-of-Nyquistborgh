@@ -12,7 +12,7 @@ public:
 	{
 	}
 
-
+	void SetInput(const sf::Event ev) override;
 	void Init() override;
 	void Update() override;
 private:

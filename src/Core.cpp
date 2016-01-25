@@ -52,8 +52,6 @@ Core::Core()
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
-
-	stateManager.ChangeState(StateType::MainMenu); //starting state //TBI
 }
 
 void Core::Run()
@@ -65,6 +63,7 @@ void Core::Run()
 	graphics.Init();
 	dataKeeper.GetMainMenu()->Init();
 	dataKeeper.GetGameMenu()->Init();
+	stateManager.ChangeState(StateType::MainMenu); //starting state
 
 	Loop();
 }

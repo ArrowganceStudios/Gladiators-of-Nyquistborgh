@@ -1,5 +1,8 @@
 #include "Button.h"
 
+#define BUTTON_HOVER 1
+#define BUTTON_PRESSED 2
+
 static bool IsInsideBounds(sf::Vector2i pos, sf::Vector2f topLeft, sf::Vector2f botRight)
 {
 	return pos.x > topLeft.x &&
@@ -33,17 +36,17 @@ void Button::InterpretInput()
 		sf::Vector2i cursor = { input.mouseMove.x, input.mouseMove.y };
 		if (IsInsideBounds(cursor, topLeft, botRight))
 		{
-			ChangeTexture(GraphicEngine::GraphicID::MenuButtonNewGameHovered);
+			ChangeTexture((GraphicEngine::GraphicID)((int)base_gid + BUTTON_HOVER));
 		}
 		else
-			ChangeTexture(GraphicEngine::GraphicID::MenuButtonNewGameStatic);
+			ChangeTexture(base_gid);
 	}
 	else if (input.type == sf::Event::MouseButtonPressed)
 	{
 		sf::Vector2i cursor = { input.mouseButton.x, input.mouseButton.y };
 		if (IsInsideBounds(cursor, topLeft, botRight))
 		{
-			ChangeTexture(GraphicEngine::GraphicID::MenuButtonNewGamePressed);
+			ChangeTexture((GraphicEngine::GraphicID)((int)base_gid + BUTTON_PRESSED));
 		}
 	}
 	else if (input.type == sf::Event::MouseButtonReleased)
@@ -51,7 +54,7 @@ void Button::InterpretInput()
 		sf::Vector2i cursor = { input.mouseButton.x, input.mouseButton.y };
 		if (IsInsideBounds(cursor, topLeft, botRight))
 		{
-			ChangeTexture(GraphicEngine::GraphicID::MenuButtonNewGamePressed);
+			ChangeTexture((GraphicEngine::GraphicID)((int)base_gid + BUTTON_PRESSED));
 			action();
 		}
 	}

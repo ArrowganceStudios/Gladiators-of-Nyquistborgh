@@ -1,12 +1,7 @@
 #include "State.h"
 
 State::State(StateType type, EventSystem & eventSystem, GraphicEngine & graphics)
-	: type(type), eventSystem(eventSystem), graphics(graphics)
-{
-}
-
-State::State(State const & other)
-	: type(other.type), eventSystem(other.eventSystem), graphics(other.graphics)
+	: eventSystem(eventSystem), graphics(graphics)
 {
 }
 
@@ -32,12 +27,5 @@ void State::SendEvent(EventType evType, int val)
 
 void State::SendEvent(EventType evType, float val)
 {
-	Event ev = Event(evType, val);
 	this->eventSystem.Add(Event(evType, val));
 }
-
-//State & State::operator=(State const & other)
-//{
-//	type = other.type;
-//	return (*this);
-//}

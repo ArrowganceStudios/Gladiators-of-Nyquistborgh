@@ -14,6 +14,9 @@ public:
 		  dataKeeper(dataKeeper)
 		  {};
 
+	StateManager(StateManager const&) = delete;
+	StateManager& operator=(StateManager const&) = delete;
+
 	void ChangeState(StateType type);
 	void Update();
 	void PropagateEvent(const Event &ev);
