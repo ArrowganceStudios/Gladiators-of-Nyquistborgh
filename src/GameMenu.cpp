@@ -3,12 +3,14 @@
 
 void GameMenu::Init()
 {
+	uint8 sid = graphics.RequestSprite(GraphicEngine::GraphicID::MenuBackground, 0);
+	graphics.SetPosition(sid, { 0, 0 });
 	enterShop.Init();
 	enterBattle.Init();
 	goBack.Init();
-	enterShop.SetPosition({ 300, 340 });
-	enterBattle.SetPosition({ 300, 420 });
-	goBack.SetPosition({ 300, 500 });
+	enterShop.SetPosition({ 550, 340 });
+	enterBattle.SetPosition({ 550, 420 });
+	goBack.SetPosition({ 550, 500 });
 }
 
 void GameMenu::Update()

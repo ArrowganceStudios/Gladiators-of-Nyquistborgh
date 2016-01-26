@@ -1,6 +1,6 @@
 #include "State.h"
 
-State::State(StateType type, EventSystem & eventSystem, GraphicEngine & graphics)
+State::State(EventSystem & eventSystem, GraphicEngine & graphics)
 	: eventSystem(eventSystem), graphics(graphics)
 {
 }

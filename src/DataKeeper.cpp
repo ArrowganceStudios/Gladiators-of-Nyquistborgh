@@ -1,9 +1,6 @@
 #include <Windows.h>
 #include "DataKeeper.h"
 
-#define Kilobytes(Value) ((Value) * 1024LL)
-#define Megabytes(Value) ((Value) * 1024LL * 1024LL)
-
 DataKeeper::DataKeeper()
 {
 	const LPVOID baseAddress = (LPVOID)1073741824;
@@ -32,8 +29,11 @@ void DataKeeper::InitData(EventSystem & evtSystem, GraphicEngine & grphEngine)
 		texture = new (texture) sf::Texture();
 		texture++;
 	}
+	Intro *intro = GetIntro();
+	intro = new (intro) Intro(evtSystem, grphEngine);
 	MainMenu *mm = GetMainMenu();
 	mm = new (mm) MainMenu(evtSystem, grphEngine);
 	GameMenu *gm = GetGameMenu();
 	gm = new (gm) GameMenu(evtSystem, grphEngine);
+
 }

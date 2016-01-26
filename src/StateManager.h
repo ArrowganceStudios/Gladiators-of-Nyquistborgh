@@ -17,6 +17,7 @@ public:
 	StateManager(StateManager const&) = delete;
 	StateManager& operator=(StateManager const&) = delete;
 
+	void ChangeStateTo(std::function<State*()> getState);
 	void ChangeState(StateType type);
 	void Update();
 	void PropagateEvent(const Event &ev);

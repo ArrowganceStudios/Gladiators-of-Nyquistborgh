@@ -6,7 +6,7 @@ class GameMenu : public State
 {
 public:
 	GameMenu(EventSystem& eventSystem, GraphicEngine& graphicEngine)
-		: State(StateType::GameMenu, eventSystem, graphicEngine),
+		: State(eventSystem, graphicEngine),
 		enterShop(graphics, GraphicEngine::GraphicID::GameButtonEnterShopStatic, [this] { this->RequestStateChange(StateType::Shop); }),
 		enterBattle(graphics, GraphicEngine::GraphicID::GameButtonEnterBattleStatic, [this] { this->RequestStateChange(StateType::Battle); }),
 		goBack(graphics, GraphicEngine::GraphicID::GameButtonGoBackStatic, [this] { this->RequestStateChange(StateType::MainMenu); })

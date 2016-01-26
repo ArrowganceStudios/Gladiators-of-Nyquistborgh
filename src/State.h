@@ -20,7 +20,7 @@ enum class StateType
 class State
 {
 public:
-	State(StateType type, EventSystem& eventSystem, GraphicEngine& graphics);
+	State(EventSystem& eventSystem, GraphicEngine& graphics);
 
 	State(State const& other) = delete;
 	State& operator=(State const& other) = delete;

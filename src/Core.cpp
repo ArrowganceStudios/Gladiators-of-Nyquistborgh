@@ -1,7 +1,5 @@
 #include "Core.h"
-
-static unsigned int windowWidth = 800;
-static unsigned int windowHeight = 600;
+#include "Constants.h"
 
 void Core::Loop()
 {
@@ -17,7 +15,8 @@ void Core::Loop()
 				window.close();
 			if (event.type == sf::Event::MouseButtonPressed ||
 				event.type == sf::Event::MouseButtonReleased ||
-				event.type == sf::Event::MouseMoved)
+				event.type == sf::Event::MouseMoved ||
+				event.type == sf::Event::KeyPressed)
 				stateManager.PropagateInput(event);
 		}
 		while (!eventSystem.IsQueueEmpty())
@@ -45,7 +44,7 @@ void Core::Loop()
 }
 
 Core::Core()
-	: window(sf::VideoMode(windowWidth, windowHeight), "Gladiators of Nyquistborgh"),
+	: window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh"),
 	dataKeeper(),
 	graphics(window, dataKeeper), audio(), eventSystem(), 
 	stateManager(eventSystem, graphics, dataKeeper)
@@ -58,12 +57,11 @@ void Core::Run()
 {
 	//inits
 	//...
-	//graphics.LoadTextures();
 	dataKeeper.InitData(eventSystem, graphics);
 	graphics.Init();
 	dataKeeper.GetMainMenu()->Init();
 	dataKeeper.GetGameMenu()->Init();
-	stateManager.ChangeState(StateType::MainMenu); //starting state
+	stateManager.ChangeState(StateType::Intro); //starting state
 
 	Loop();
 }

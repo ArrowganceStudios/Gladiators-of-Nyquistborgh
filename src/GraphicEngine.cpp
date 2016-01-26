@@ -9,6 +9,8 @@ GraphicEngine::GraphicEngine(sf::RenderWindow & window, DataKeeper& dataKeeper)
 
 void GraphicEngine::LoadTextures()
 {
+	LoadTexture(GraphicID::IntroLogo,						"assets/intro/arrowgance_logo_small.jpg");
+
 	LoadTexture(GraphicID::MenuBackground,					"assets/ui/MainMenu.jpg");
 	LoadTexture(GraphicID::MenuButtonNewGameStatic,			"assets/ui/MainMenuButtonNewGameStatic.png");
 	LoadTexture(GraphicID::MenuButtonNewGameHovered,		"assets/ui/MainMenuButtonNewGameHover.png");
@@ -44,14 +46,14 @@ void GraphicEngine::LoadTexture(GraphicID gid, const char* path)
 	}
 	else
 	{
-		printf("KURWA MAC ZA DUZO TEXTUR");
+		printf("No more textures slots available, increase the capacity");
 		//TODO: log error that we have exceeded amount of textures to be loaded
 	}
 }
 
 uint8 GraphicEngine::CreateSprite(GraphicID gid)
 {
-	sprites[_spritesCount].setTexture(textures[(int)gid]);
+	sprites[_spritesCount].setTexture(textures[(int)gid], true);
 	return _spritesCount++;
 }
 
@@ -64,7 +66,7 @@ void GraphicEngine::Init()
 
 void GraphicEngine::RenderScene()
 {
-	window.clear(sf::Color(255, 0, 255)); 
+	window.clear(sf::Color(255, 255, 255)); 
 	for (auto& renderable : renderables)
 	{
 		window.draw(sprites[renderable.sid]);
@@ -72,3 +74,4 @@ void GraphicEngine::RenderScene()
 
 	window.display();
 }
+

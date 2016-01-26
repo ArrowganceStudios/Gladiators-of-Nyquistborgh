@@ -58,4 +58,5 @@ void Button::InterpretInput()
 			action();
 		}
 	}
+	input.type = (sf::Event::EventType)NULL; //resets the input to "closed" event
 }

@@ -5,7 +5,7 @@
 #include <vector>
 #include "BaseTypes.h"
 #include "ForwardDeclarations.h"
-//#include "DataKeeper.h"
+#include "Constants.h"
 
 typedef sf::Vector2f Position;
 
@@ -19,13 +19,15 @@ public:
 
 	void LoadTextures();
 
-	void SetPosition(uint8 sid, sf::Vector2f pos) { sprites[sid].setPosition(pos); }
+	
 
 	enum class GraphicID
 	{
 		//until we'll use spritesheets, the order of button graphics
 		//needs to be preserved, so it can change it's appearance 
 		//according to it's needs
+		IntroLogo,
+
 		MenuBackground,
 		MenuButtonNewGameStatic,
 		MenuButtonNewGameHovered,
@@ -47,7 +49,9 @@ public:
 		ENUM_SIZE //lil' trick yo
 	};
 
+	void SetPosition(uint8 sid, sf::Vector2f pos) { sprites[sid].setPosition(pos); }
 	void SetTexture(uint8 sid, GraphicID gid) { sprites[sid].setTexture(textures[(int)gid]); }
+	void SetAlpha(uint8 sid, float alpha) { sprites[sid].setColor(sf::Color(255, 255, 255, sf::Uint8(alpha * 255.0f))); }
 
 	uint8 RequestSprite(GraphicID gid, uint8 depth);
 
@@ -65,6 +69,18 @@ public:
 			return lhs.depth < rhs.depth;
 		}
 	};
+
+	void ResetSprites()
+	{
+		for (int i = 0; i < MAX_SPRITES; ++i)
+		{
+			sprites[i].setPosition({ 0, 0 });
+			sprites[i].setColor(sf::Color::White);
+		}
+
+		renderables.clear();
+		_spritesCount = 0;
+	}
 
 	void Init();
 

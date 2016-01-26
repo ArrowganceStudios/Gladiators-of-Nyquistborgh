@@ -9,7 +9,8 @@ void MainMenu::SetInput(const sf::Event ev)
 
 void MainMenu::Init()
 {
-	graphics.RequestSprite(GraphicEngine::GraphicID::MenuBackground, 0);
+	uint8 sid = graphics.RequestSprite(GraphicEngine::GraphicID::MenuBackground, 0);
+	graphics.SetPosition(sid, { 0, 0 });
 	newGame.Init();
 	quitGame.Init();
 	newGame.SetPosition({ 550, 420 });

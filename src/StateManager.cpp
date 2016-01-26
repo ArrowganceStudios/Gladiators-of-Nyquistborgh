@@ -2,6 +2,13 @@
 #include "MainMenu.h"
 #include "GameMenu.h"
 
+void StateManager::ChangeStateTo(std::function<State*()> getState)
+{
+	graphics.ResetSprites();
+	state = getState();
+	state->Init();
+}
+
 void StateManager::ChangeState(StateType type)
 {
 	switch (type)
@@ -9,16 +16,17 @@ void StateManager::ChangeState(StateType type)
 	case StateType::None:
 		break;
 	case StateType::MainMenu:
-		state = dataKeeper.GetMainMenu();
+		ChangeStateTo([this] { return dataKeeper.GetMainMenu();});
 		break;
 	case StateType::GameMenu:
-		state = dataKeeper.GetGameMenu();
-		break;
-	case StateType::Intro:
+		ChangeStateTo([this] { return dataKeeper.GetGameMenu();});
 		break;
 	case StateType::Shop:
 		break;
 	case StateType::Battle:
+		break;
+	case StateType::Intro:
+		ChangeStateTo([this] { return dataKeeper.GetIntro();});
 		break;
 	default:
 		break;
