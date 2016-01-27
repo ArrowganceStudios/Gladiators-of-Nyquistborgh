@@ -1,4 +1,5 @@
 #include "Button.h"
+#include "Constants.h"
 
 #define BUTTON_HOVER 1
 #define BUTTON_PRESSED 2
@@ -16,7 +17,7 @@ void Button::SetPosition(sf::Vector2f pos)
 	//sf::Vector2u size = graphics.GetSizeOf(GraphicId::GButton);
 	graphics.SetPosition(sid, pos);
 	topLeft = { pos.x, pos.y };
-	botRight = { pos.x + 240, pos.y + 90 }; //240 and 90 is the current size, TODO: sort this stuff out
+	botRight = { pos.x + BUTTON_WIDTH, pos.y + BUTTON_HEIGHT}; // TODO: sort this stuff out
 }
 
 void Button::Init()

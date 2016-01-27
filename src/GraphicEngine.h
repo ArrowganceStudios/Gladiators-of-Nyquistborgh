@@ -46,7 +46,7 @@ public:
 		GameButtonGoBackHover,
 		GameButtonGoBackPressed,
 
-		ENUM_SIZE //lil' trick yo
+		ENUM_SIZE
 	};
 
 	void SetPosition(uint8 sid, sf::Vector2f pos) { sprites[sid].setPosition(pos); }

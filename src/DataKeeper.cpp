@@ -35,5 +35,4 @@ void DataKeeper::InitData(EventSystem & evtSystem, GraphicEngine & grphEngine)
 	mm = new (mm) MainMenu(evtSystem, grphEngine);
 	GameMenu *gm = GetGameMenu();
 	gm = new (gm) GameMenu(evtSystem, grphEngine);
-
 }

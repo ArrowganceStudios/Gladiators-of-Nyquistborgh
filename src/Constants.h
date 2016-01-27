@@ -9,3 +9,6 @@
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
+
+#define BUTTON_WIDTH 240
+#define BUTTON_HEIGHT 90

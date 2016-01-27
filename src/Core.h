@@ -16,8 +16,12 @@ private:
 	GraphicEngine graphics;
 	AudioEngine audio;
 	sf::RenderWindow window;
+	sf::View view;
+
+	float aspectRatio; //default is 4:3
 
 	void Loop();
+	void ToggleFullscreen();
 
 public:
 	Core();

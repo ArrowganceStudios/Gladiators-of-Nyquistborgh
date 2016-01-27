@@ -12,8 +12,6 @@ public:
 		goBack(graphics, GraphicEngine::GraphicID::GameButtonGoBackStatic, [this] { this->RequestStateChange(StateType::MainMenu); })
 	{
 
-		//	TODO:	Button graphics...
-
 	};
 	void Init() override;
 	void Update() override;
@@ -23,7 +21,4 @@ private:
 	Button enterShop;
 	Button enterBattle;
 	Button goBack;
-	//InputCatcher input;
-
-	//void InterpretInput();
 };
