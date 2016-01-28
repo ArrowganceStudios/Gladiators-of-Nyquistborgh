@@ -1,6 +1,7 @@
 #include "Button.h"
 #include "Constants.h"
 
+#define BUTTON_DEFAULT 0
 #define BUTTON_HOVER 1
 #define BUTTON_PRESSED 2
 
@@ -22,7 +23,7 @@ void Button::SetPosition(sf::Vector2f pos)
 
 void Button::Init()
 {
-	sid = graphics.RequestSprite(gid, 1);
+	sid = graphics.RequestTileset(gid, 1, BUTTON_WIDTH, BUTTON_HEIGHT - 10, 3);
 }
 
 void Button::Update()
@@ -37,17 +38,17 @@ void Button::InterpretInput()
 		sf::Vector2i cursor = { input.mouseMove.x, input.mouseMove.y };
 		if (IsInsideBounds(cursor, topLeft, botRight))
 		{
-			ChangeTexture((GraphicEngine::GraphicID)((int)base_gid + BUTTON_HOVER));
+			graphics.ChangeTile(sid, BUTTON_HOVER);
 		}
 		else
-			ChangeTexture(base_gid);
+			graphics.ChangeTile(sid, BUTTON_DEFAULT);
 	}
 	else if (input.type == sf::Event::MouseButtonPressed)
 	{
 		sf::Vector2i cursor = { input.mouseButton.x, input.mouseButton.y };
 		if (IsInsideBounds(cursor, topLeft, botRight))
 		{
-			ChangeTexture((GraphicEngine::GraphicID)((int)base_gid + BUTTON_PRESSED));
+			graphics.ChangeTile(sid, BUTTON_PRESSED);
 		}
 	}
 	else if (input.type == sf::Event::MouseButtonReleased)
@@ -55,7 +56,7 @@ void Button::InterpretInput()
 		sf::Vector2i cursor = { input.mouseButton.x, input.mouseButton.y };
 		if (IsInsideBounds(cursor, topLeft, botRight))
 		{
-			ChangeTexture((GraphicEngine::GraphicID)((int)base_gid + BUTTON_PRESSED));
+			graphics.ChangeTile(sid, BUTTON_PRESSED);
 			action();
 		}
 	}

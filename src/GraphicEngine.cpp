@@ -9,25 +9,16 @@ GraphicEngine::GraphicEngine(sf::RenderWindow & window, DataKeeper& dataKeeper)
 
 void GraphicEngine::LoadTextures()
 {
-	LoadTexture(GraphicID::IntroLogo,						"assets/intro/arrowgance_logo_small.jpg");
+	LoadTexture(GraphicID::IntroLogo,				"assets/intro/arrowgance_logo_small.jpg");
 
-	LoadTexture(GraphicID::MenuBackground,					"assets/ui/MainMenu.jpg");
-	LoadTexture(GraphicID::MenuButtonNewGameStatic,			"assets/ui/MainMenuButtonNewGameStatic.png");
-	LoadTexture(GraphicID::MenuButtonNewGameHovered,		"assets/ui/MainMenuButtonNewGameHover.png");
-	LoadTexture(GraphicID::MenuButtonNewGamePressed,		"assets/ui/MainMenuButtonNewGamePressed.png");
-	LoadTexture(GraphicID::MenuButtonQuitStatic,			"assets/ui/MainMenuButtonQuitStatic.png");
-	LoadTexture(GraphicID::MenuButtonQuitHovered,			"assets/ui/MainMenuButtonQuitHover.png");
-	LoadTexture(GraphicID::MenuButtonQuitPressed,			"assets/ui/MainMenuButtonQuitPressed.png");
+	LoadTexture(GraphicID::MenuBackground,			"assets/ui/MainMenu.jpg");
+	
+	LoadTexture(GraphicID::MenuButtonNewGame,		"assets/ui/MainMenuButtonNewGame.png");
+	LoadTexture(GraphicID::MenuButtonQuit,			"assets/ui/MainMenuButtonQuit.png");
+	LoadTexture(GraphicID::GameButtonEnterBattle,	"assets/ui/GameMenuButtonEnterBattle.png");
+	LoadTexture(GraphicID::GameButtonEnterShop,		"assets/ui/GameMenuButtonEnterShop.png");
+	LoadTexture(GraphicID::GameButtonGoBack,		"assets/ui/GameMenuButtonGoBack.png");
 
-	LoadTexture(GraphicID::GameButtonEnterBattleStatic,		"assets/ui/GameMenuButtonEnterBattleStatic.png");
-	LoadTexture(GraphicID::GameButtonEnterBattleHover,		"assets/ui/GameMenuButtonEnterBattleHover.png");
-	LoadTexture(GraphicID::GameButtonEnterBattlePressed,	"assets/ui/GameMenuButtonEnterBattlePressed.png");
-	LoadTexture(GraphicID::GameButtonEnterShopStatic,		"assets/ui/GameMenuButtonEnterShopStatic.png");
-	LoadTexture(GraphicID::GameButtonEnterShopHover,		"assets/ui/GameMenuButtonEnterShopHover.png");
-	LoadTexture(GraphicID::GameButtonEnterShopPressed,		"assets/ui/GameMenuButtonEnterShopPressed.png");
-	LoadTexture(GraphicID::GameButtonGoBackStatic,			"assets/ui/GameMenuButtonGoBackStatic.png");
-	LoadTexture(GraphicID::GameButtonGoBackHover,			"assets/ui/GameMenuButtonGoBackHover.png");
-	LoadTexture(GraphicID::GameButtonGoBackPressed,			"assets/ui/GameMenuButtonGoBackPressed.png");
 }
 
 uint8 GraphicEngine::RequestSprite(GraphicID gid, uint8 depth)
@@ -37,12 +28,26 @@ uint8 GraphicEngine::RequestSprite(GraphicID gid, uint8 depth)
 	return sid;
 }
 
+uint8 GraphicEngine::RequestTileset(GraphicID gid, uint8 depth, uint16 tileWidth, uint16 tileHeight, uint8 numOfTiles)
+{
+	uint8 sid = CreateTileset(gid, tileWidth, tileHeight, numOfTiles);
+	renderables.insert(Renderable{ sid, depth });
+	return sid;
+}
+
+void GraphicEngine::ChangeTile(uint8 sid, uint8 tileNum)
+{
+	sprites[(int)sid].SetTile(tileNum);
+}
+
 void GraphicEngine::LoadTexture(GraphicID gid, const char* path)
 {
 	if (_texturesCount < MAX_TEXTURES)
 	{
-		textures[(int)gid].loadFromFile(path);
-		++_texturesCount;
+		if (textures[(int)gid].loadFromFile(path))
+			++_texturesCount;
+		else
+			printf("Couldn't load texture: %s", path);
 	}
 	else
 	{
@@ -53,7 +58,13 @@ void GraphicEngine::LoadTexture(GraphicID gid, const char* path)
 
 uint8 GraphicEngine::CreateSprite(GraphicID gid)
 {
-	sprites[_spritesCount].setTexture(textures[(int)gid], true);
+	sprites[_spritesCount].Init(textures[(int)gid]);
+	return _spritesCount++;
+}
+
+uint8 GraphicEngine::CreateTileset(GraphicID gid, uint16 tileWidth, uint16 tileHeight, uint8 numOfTiles)
+{
+	sprites[_spritesCount].Init(textures[(int)gid], tileWidth, tileHeight, numOfTiles);
 	return _spritesCount++;
 }
 
@@ -69,7 +80,7 @@ void GraphicEngine::RenderScene()
 	window.clear(sf::Color(255, 255, 255)); 
 	for (auto& renderable : renderables)
 	{
-		window.draw(sprites[renderable.sid]);
+		window.draw(sprites[renderable.sid].sprite);
 	}
 
 	window.display();

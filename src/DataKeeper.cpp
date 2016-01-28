@@ -17,10 +17,10 @@ DataKeeper::~DataKeeper()
 }
 void DataKeeper::InitData(EventSystem & evtSystem, GraphicEngine & grphEngine)
 {
-	sf::Sprite* sprite = GetSpriteTable();
+	Tileset* sprite = GetSpriteTable();
 	for (uint8 i = 0; i < MAX_SPRITES; ++i)
 	{
-		sprite = new (sprite) sf::Sprite();
+		sprite = new (sprite) Tileset();
 		sprite++;
 	}
 	sf::Texture* texture = GetTextureTable();

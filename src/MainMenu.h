@@ -7,8 +7,8 @@ class MainMenu : public State
 public:
 	MainMenu(EventSystem& eventSystem, GraphicEngine& graphicEngine)
 		: State(eventSystem, graphicEngine),
-		newGame(graphics, GraphicEngine::GraphicID::MenuButtonNewGameStatic, [this] { RequestStateChange(StateType::GameMenu); }),
-		quitGame(graphics, GraphicEngine::GraphicID::MenuButtonQuitStatic, [this] { SendEvent(EventType::ExitProgram); })
+		newGame(graphics, GraphicEngine::GraphicID::MenuButtonNewGame, [this] { RequestStateChange(StateType::GameMenu); }),
+		quitGame(graphics, GraphicEngine::GraphicID::MenuButtonQuit, [this] { SendEvent(EventType::ExitProgram); })
 	{
 	}
 

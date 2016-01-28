@@ -2,8 +2,8 @@
 
 //#include "Player.h"
 //#include "Enemy.h"
-#include "SFML\Graphics.hpp"
 #include "SFML\Audio.hpp"
+#include "Tileset.h"
 #include "ForwardDeclarations.h"
 #include "Intro.h"
 #include "MainMenu.h"
@@ -21,7 +21,7 @@ public:
 
 	void InitData(EventSystem &evtSystem, GraphicEngine &grphEngine);
 
-	sf::Sprite *GetSpriteTable() { return GameData->sprites; }
+	Tileset *GetSpriteTable() { return GameData->sprites; }
 	sf::Texture *GetTextureTable() { return GameData->textures; }
 	sf::Sound *GetSoundTable() { return GameData->sounds; }
 	Intro *GetIntro() { return &(GameData->intro); }
@@ -31,7 +31,8 @@ public:
 private:
 	struct Data
 	{
-		sf::Sprite sprites[MAX_SPRITES];
+		Tileset sprites[MAX_SPRITES];
+		//sf::Sprite sprites[MAX_SPRITES];
 		sf::Texture textures[MAX_TEXTURES];	//	TODO: Check frequency of accesses by sprites
 		sf::Sound sounds[MAX_SOUNDS];
 		Intro intro;

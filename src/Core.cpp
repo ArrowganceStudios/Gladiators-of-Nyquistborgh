@@ -52,23 +52,11 @@ void Core::ToggleFullscreen()
 {
 	static bool fullscreen = true; //lol
 	if (fullscreen)
-	{
 		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Fullscreen);
-		view = sf::View({ WINDOW_WIDTH / 2.0f, WINDOW_HEIGHT / 2.0f }, { WINDOW_WIDTH, WINDOW_HEIGHT });
-		if (aspectRatio > 1.4f) //== not 4 : 3
-		{ //please kill me for writing this 
-			const float panoramicRatio = 1.f / aspectRatio;
-			view.setViewport(sf::FloatRect((1 - panoramicRatio) / 2.f, 0.0f, panoramicRatio, 1.f));
-			window.setView(view);
-		}
-		fullscreen = false;
-	}
 	else
-	{
 		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Close | sf::Style::Titlebar);
-		fullscreen = true;
-	}
 
+	fullscreen = !fullscreen;
 }
 
 Core::Core()
