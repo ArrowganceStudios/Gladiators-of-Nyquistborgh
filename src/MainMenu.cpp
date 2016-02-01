@@ -9,6 +9,7 @@ void MainMenu::SetInput(const sf::Event ev)
 
 void MainMenu::Init()
 {
+	//we could use graphic component, but in this case it's not neccessary
 	uint8 sid = graphics.RequestSprite(GraphicEngine::GraphicID::MenuBackground, 0);
 	graphics.SetPosition(sid, { 0, 0 });
 	newGame.Init();

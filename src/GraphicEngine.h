@@ -2,7 +2,6 @@
 #include <SFML\System.hpp>
 #include <SFML\Graphics.hpp>
 #include <set>
-#include <vector>
 #include "BaseTypes.h"
 #include "ForwardDeclarations.h"
 #include "Constants.h"
@@ -20,8 +19,6 @@ public:
 
 	void LoadTextures();
 
-	
-
 	enum class GraphicID
 	{
 		IntroLogo,
@@ -34,20 +31,27 @@ public:
 		GameButtonEnterShop,
 		GameButtonGoBack,
 
+		TestColorAnim,
+
 		ENUM_SIZE
 	};
 
+	sf::Vector2f GetPosition(uint8 sid) {
+		return sprites[sid].sprite.getPosition();
+	}
+
 	void SetPosition(uint8 sid, sf::Vector2f pos) { 
 		sprites[sid].sprite.setPosition(pos);
-		//sprites[sid].setPosition(pos); 
 	}
 	void SetTexture(uint8 sid, GraphicID gid) { 
 		sprites[sid].sprite.setTexture(textures[(int)gid]);
-		//sprites[sid].setTexture(textures[(int)gid]); 
 	}
 	void SetAlpha(uint8 sid, float alpha) { 
 		sprites[sid].sprite.setColor(sf::Color(255, 255, 255, sf::Uint8(alpha * 255.0f)));
-		//sprites[sid].setColor(sf::Color(255, 255, 255, sf::Uint8(alpha * 255.0f))); 
+	}
+
+	void MoveBy(uint8 sid, sf::Vector2f pos) {
+		sprites[sid].sprite.move(pos);
 	}
 
 	uint8 RequestSprite(GraphicID gid, uint8 depth);
@@ -73,7 +77,8 @@ public:
 	{
 		for (int i = 0; i < MAX_SPRITES; ++i)
 		{
-			sprites[i].sprite.setPosition({ 0, 0 });
+			sprites[i].sprite.setPosition({ 0, 0 }); //prolly to be removed since most of the objects set their 
+													//position to non-default one anyway
 			sprites[i].sprite.setColor(sf::Color::White);
 		}
 
@@ -88,7 +93,7 @@ private:
 	sf::RenderWindow& window;
 	sf::Texture* textures;
 	Tileset* sprites;
-	std::multiset<Renderable, DepthTester> renderables;
+	std::multiset<Renderable, DepthTester> renderables; //to be changed to radix sort later
 	uint8 _spritesCount;
 	uint8 _texturesCount;
 	DataKeeper& dataKeeper;

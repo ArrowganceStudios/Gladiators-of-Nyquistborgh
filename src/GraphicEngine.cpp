@@ -19,6 +19,7 @@ void GraphicEngine::LoadTextures()
 	LoadTexture(GraphicID::GameButtonEnterShop,		"assets/ui/GameMenuButtonEnterShop.png");
 	LoadTexture(GraphicID::GameButtonGoBack,		"assets/ui/GameMenuButtonGoBack.png");
 
+	LoadTexture(GraphicID::TestColorAnim,			"assets/test/colorAnim.png");
 }
 
 uint8 GraphicEngine::RequestSprite(GraphicID gid, uint8 depth)
@@ -52,7 +53,6 @@ void GraphicEngine::LoadTexture(GraphicID gid, const char* path)
 	else
 	{
 		printf("No more textures slots available, increase the capacity");
-		//TODO: log error that we have exceeded amount of textures to be loaded
 	}
 }
 

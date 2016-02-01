@@ -17,5 +17,4 @@ private:
 	uint8 numTilesX, numTilesY;	//	numTilesY may be unused in the future
 	uint16 tileWidth, tileHeight;
 	uint16 numOfTiles;
-
 };

@@ -32,8 +32,9 @@ private:
 	struct Data
 	{
 		Tileset sprites[MAX_SPRITES];
-		//sf::Sprite sprites[MAX_SPRITES];
-		sf::Texture textures[MAX_TEXTURES];	//	TODO: Check frequency of accesses by sprites
+		//sf::Sprite sprites[MAX_SPRITES];  //	TODO: Check frequency of accesses by sprites
+		sf::Texture textures[MAX_TEXTURES];	//edit: it's high but since sf::sprite uses
+											//pointer to texture we can't optimize it anyway
 		sf::Sound sounds[MAX_SOUNDS];
 		Intro intro;
 		MainMenu mainMenu;

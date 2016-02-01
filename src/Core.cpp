@@ -1,4 +1,3 @@
-#include <Windows.h>
 #include "Core.h"
 #include "Constants.h"
 
@@ -50,7 +49,7 @@ void Core::Loop()
 
 void Core::ToggleFullscreen()
 {
-	static bool fullscreen = true; //lol
+	fullscreen = true; 
 	if (fullscreen)
 		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Fullscreen);
 	else
@@ -61,15 +60,15 @@ void Core::ToggleFullscreen()
 
 Core::Core()
 	: window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Close | sf::Style::Titlebar), //sf::Style::Fullscreen
-	dataKeeper(),
+	dataKeeper(), fullscreen(false),
 	graphics(window, dataKeeper), audio(), eventSystem(),
 	stateManager(eventSystem, graphics, dataKeeper)
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
-	int screenWidth = GetSystemMetrics(SM_CXSCREEN);
-	int screenHeight = GetSystemMetrics(SM_CYSCREEN);
-	aspectRatio = float(screenWidth) / float(screenHeight);
+	//perhaps one day the below will be used
+	//int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+	//int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 }
 
 void Core::Run()
@@ -77,7 +76,8 @@ void Core::Run()
 	//inits
 	dataKeeper.InitData(eventSystem, graphics);
 	graphics.Init();
-	stateManager.ChangeState(StateType::Intro); //starting state
+	//stateManager.ChangeState(StateType::Intro); //default starting state
+	stateManager.ChangeState(StateType::GameMenu); //let's don't waste time aight
 
 	Loop();
 }

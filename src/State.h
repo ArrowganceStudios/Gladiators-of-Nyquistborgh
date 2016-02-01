@@ -41,6 +41,4 @@ protected:
 	void SendEvent(EventType evType, bool val);
 	void SendEvent(EventType evType, int val);
 	void SendEvent(EventType evType, float val);
-
-
 };
