@@ -93,7 +93,7 @@
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <GenerateDebugInformation>Debug</GenerateDebugInformation>
       <AdditionalLibraryDirectories>$(ProjectDir)\lib\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>sfml-audio-d.lib;sfml-graphics-d.lib;sfml-main-d.lib;sfml-network-d.lib;sfml-system-d.lib;sfml-window-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
@@ -120,14 +120,18 @@
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
-      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>SFML_STATIC;WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
+      <AdditionalIncludeDirectories>$(ProjectDir)\lib\SFML\include</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
-      <SubSystem>Console</SubSystem>
+      <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
+      <AdditionalLibraryDirectories>$(ProjectDir)\lib\SFML\lib</AdditionalLibraryDirectories>
+      <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;opengl32.lib;freetype.lib;jpeg.lib;winmm.lib;gdi32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalOptions>/ENTRY:"mainCRTStartup" %(AdditionalOptions)</AdditionalOptions>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -150,27 +154,38 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src/Main.cpp" />
+    <ClCompile Include="src\AnimationComponent.cpp" />
+    <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\Core.cpp" />
     <ClCompile Include="src\DataKeeper.cpp" />
     <ClCompile Include="src\EventSystem.cpp" />
     <ClCompile Include="src\GameMenu.cpp" />
+    <ClCompile Include="src\GraphicComponent.cpp" />
     <ClCompile Include="src\GraphicEngine.cpp" />
+    <ClCompile Include="src\Intro.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
+    <ClCompile Include="src\Tileset.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src/AudioEngine.h" />
     <ClInclude Include="src/Core.h" />
     <ClInclude Include="src/GraphicEngine.h" />
     <ClInclude Include="src/StateManager.h" />
+    <ClInclude Include="src\AnimationComponent.h" />
+    <ClInclude Include="src\BaseTypes.h" />
+    <ClInclude Include="src\Button.h" />
+    <ClInclude Include="src\Constants.h" />
     <ClInclude Include="src\DataKeeper.h" />
     <ClInclude Include="src\Event.h" />
     <ClInclude Include="src\EventSystem.h" />
     <ClInclude Include="src\ForwardDeclarations.h" />
     <ClInclude Include="src\GameMenu.h" />
-    <ClInclude Include="src\IRenderable.h" />
+    <ClInclude Include="src\GraphicComponent.h" />
+    <ClInclude Include="src\Intro.h" />
     <ClInclude Include="src\MainMenu.h" />
+    <ClInclude Include="src\Tileset.h" />
     <ClInclude Include="src\State.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

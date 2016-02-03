@@ -13,7 +13,7 @@ public:
 	EventSystem(EventSystem const&) = delete;
 	EventSystem& operator=(EventSystem const&) = delete;
 
-	void Add(Event&& event);
+	void Add(Event &&event);
 
 private:
 	std::queue<Event> events;

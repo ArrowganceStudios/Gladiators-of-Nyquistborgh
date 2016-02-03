@@ -2,26 +2,31 @@
 #include "MainMenu.h"
 #include "GameMenu.h"
 
+void StateManager::ChangeStateTo(std::function<State*()> getState)
+{
+	graphics.ResetSprites();
+	state = getState();
+	state->Init();
+}
+
 void StateManager::ChangeState(StateType type)
 {
-	static MainMenu mainMenu = MainMenu(eventSystem, graphics); //hacky shit until we have datakeeper
-	static GameMenu gameMenu = GameMenu(eventSystem, graphics);	//hacky shit until we have datakeeper
-
 	switch (type)
 	{
 	case StateType::None:
 		break;
 	case StateType::MainMenu:
-		state = &mainMenu;
+		ChangeStateTo([this] { return dataKeeper.GetMainMenu();});
 		break;
 	case StateType::GameMenu:
-		state = &gameMenu;
-		break;
-	case StateType::Intro:
+		ChangeStateTo([this] { return dataKeeper.GetGameMenu();});
 		break;
 	case StateType::Shop:
 		break;
 	case StateType::Battle:
+		break;
+	case StateType::Intro:
+		ChangeStateTo([this] { return dataKeeper.GetIntro();});
 		break;
 	default:
 		break;
@@ -36,4 +41,9 @@ void StateManager::Update()
 void StateManager::PropagateEvent(const Event &ev)
 {
 	GetCurState()->PushEvent(ev);
+}
+
+void StateManager::PropagateInput(const sf::Event & ev)
+{
+	GetCurState()->SetInput(ev);
 }

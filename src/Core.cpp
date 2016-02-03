@@ -1,20 +1,27 @@
 #include "Core.h"
-
-static unsigned int windowWidth = 800;
-static unsigned int windowHeight = 600;
+#include "Constants.h"
 
 void Core::Loop()
 {
 	while (window.isOpen())
 	{
 		stateManager.Update();
-		graphics.RenderScene();	// calls window.clear() and window.display()
 
 		sf::Event event;
 		while (window.pollEvent(event))
 		{
 			if (event.type == sf::Event::Closed)
 				window.close();
+			if (event.type == sf::Event::MouseButtonPressed ||
+				event.type == sf::Event::MouseButtonReleased ||
+				event.type == sf::Event::MouseMoved ||
+				event.type == sf::Event::KeyPressed)
+				stateManager.PropagateInput(event);
+			if (event.type == sf::Event::KeyPressed)
+			{
+				if (event.key.code == sf::Keyboard::F8)
+					ToggleFullscreen();
+			}
 		}
 		while (!eventSystem.IsQueueEmpty())
 		{
@@ -36,24 +43,41 @@ void Core::Loop()
 				break;
 			}
 		}
-
+		graphics.RenderScene();	// calls window.clear() and window.display()
 	}
 }
 
+void Core::ToggleFullscreen()
+{
+	fullscreen = true; 
+	if (fullscreen)
+		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Fullscreen);
+	else
+		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Close | sf::Style::Titlebar);
+
+	fullscreen = !fullscreen;
+}
+
 Core::Core()
-	: window(sf::VideoMode(windowWidth, windowHeight), "Gladiators of Nyquistborgh"),
-	graphics(window), audio(), eventSystem(), mainMenu(eventSystem, graphics), 
-	stateManager(eventSystem, graphics, &mainMenu)
+	: window(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Close | sf::Style::Titlebar), //sf::Style::Fullscreen
+	dataKeeper(), fullscreen(false),
+	graphics(window, dataKeeper), audio(), eventSystem(),
+	stateManager(eventSystem, graphics, dataKeeper)
 {
 	window.setFramerateLimit(60);
 	window.setVerticalSyncEnabled(true);
-
-	stateManager.ChangeState(StateType::MainMenu); //starting state //TBI
+	//perhaps one day the below will be used
+	//int screenWidth = GetSystemMetrics(SM_CXSCREEN);
+	//int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 }
 
 void Core::Run()
 {
 	//inits
-	//...
+	dataKeeper.InitData(eventSystem, graphics);
+	graphics.Init();
+	//stateManager.ChangeState(StateType::Intro); //default starting state
+	stateManager.ChangeState(StateType::GameMenu); //let's don't waste time aight
+
 	Loop();
 }

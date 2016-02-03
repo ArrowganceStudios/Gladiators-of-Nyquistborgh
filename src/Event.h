@@ -22,6 +22,8 @@ struct Event
 		: type(type), Value(value) {};
 	Event(EventType type, StateType value)
 		: type(type), Value(value) {};
+	Event(EventType type)
+		: type(type), Value(false) {};
 
 	EventType type;
 	union Value

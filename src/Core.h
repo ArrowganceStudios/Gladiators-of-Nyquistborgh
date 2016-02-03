@@ -16,11 +16,10 @@ private:
 	GraphicEngine graphics;
 	AudioEngine audio;
 	sf::RenderWindow window;
-
-	//temp
-	MainMenu mainMenu; //delete when datakeeper is implemented
+	bool fullscreen;
 
 	void Loop();
+	void ToggleFullscreen();
 
 public:
 	Core();

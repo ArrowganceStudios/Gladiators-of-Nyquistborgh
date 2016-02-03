@@ -7,6 +7,7 @@ class EventSystem;
 class GameMenu;
 class GraphicEngine;
 class IRenderable;
+class Tileset;
 class MainMenu;
 class State;
 enum class StateType;
