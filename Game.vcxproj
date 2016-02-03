@@ -164,6 +164,7 @@
     <ClCompile Include="src\GraphicEngine.cpp" />
     <ClCompile Include="src\Intro.cpp" />
     <ClCompile Include="src\MainMenu.cpp" />
+    <ClCompile Include="src\PhysicsComponent.cpp" />
     <ClCompile Include="src\State.cpp" />
     <ClCompile Include="src\StateManager.cpp" />
     <ClCompile Include="src\Tileset.cpp" />
@@ -185,6 +186,7 @@
     <ClInclude Include="src\GraphicComponent.h" />
     <ClInclude Include="src\Intro.h" />
     <ClInclude Include="src\MainMenu.h" />
+    <ClInclude Include="src\PhysicsComponent.h" />
     <ClInclude Include="src\Tileset.h" />
     <ClInclude Include="src\State.h" />
   </ItemGroup>

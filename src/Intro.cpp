@@ -1,6 +1,6 @@
 #include "Intro.h"
 
-#define DURATION 3.0f
+#define DURATION 2.0f
 
 void Intro::Init()
 {
@@ -8,15 +8,17 @@ void Intro::Init()
 	graphics.SetPosition(logo_sid, {135, 220}); //we should do some simple alignment
 												//like center, left top, bottom etc.
 												//and conjunction using flags
-	clock.restart();
+
+	timeElapsed = sf::Time::Zero;
 }
 
-void Intro::Update()
+void Intro::Update(const sf::Time& timeStep)
 {
-	if (clock.getElapsedTime().asSeconds() > DURATION)
+	timeElapsed += timeStep;
+	if(timeElapsed > sf::seconds(DURATION))
 		RequestStateChange(StateType::MainMenu);
 
-	graphics.SetAlpha(logo_sid, 1.0f - (clock.getElapsedTime().asSeconds() / DURATION));
+	graphics.SetAlpha(logo_sid, 1.0f - (timeElapsed.asSeconds() / DURATION));
 }
 
 void Intro::SetInput(const sf::Event ev)

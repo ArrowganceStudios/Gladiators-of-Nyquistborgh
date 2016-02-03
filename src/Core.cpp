@@ -3,44 +3,55 @@
 
 void Core::Loop()
 {
+	sf::Clock clock;
+	sf::Time updateTime = sf::Time::Zero;
+	const sf::Time perFrameTime = sf::seconds(1.f / (float)DEF_FPS);
+
 	while (window.isOpen())
 	{
-		stateManager.Update();
+		updateTime += clock.restart();
 
-		sf::Event event;
-		while (window.pollEvent(event))
+		while (updateTime > perFrameTime)
 		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-			if (event.type == sf::Event::MouseButtonPressed ||
-				event.type == sf::Event::MouseButtonReleased ||
-				event.type == sf::Event::MouseMoved ||
-				event.type == sf::Event::KeyPressed)
-				stateManager.PropagateInput(event);
-			if (event.type == sf::Event::KeyPressed)
+			updateTime -= perFrameTime;
+
+			stateManager.Update(perFrameTime);
+
+			sf::Event event;
+			while (window.pollEvent(event))
 			{
-				if (event.key.code == sf::Keyboard::F8)
-					ToggleFullscreen();
+				if (event.type == sf::Event::Closed)
+					window.close();
+				if (event.type == sf::Event::MouseButtonPressed ||
+					event.type == sf::Event::MouseButtonReleased ||
+					event.type == sf::Event::MouseMoved ||
+					event.type == sf::Event::KeyPressed)
+					stateManager.PropagateInput(event);
+				if (event.type == sf::Event::KeyPressed)
+				{
+					if (event.key.code == sf::Keyboard::F8)
+						ToggleFullscreen();
+				}
 			}
-		}
-		while (!eventSystem.IsQueueEmpty())
-		{
-			Event event = eventSystem.Get();
-			switch (event.type)
+			while (!eventSystem.IsQueueEmpty())
 			{
-			case EventType::StateChange:
-				stateManager.ChangeState(event.Value.State);
-				break;
-			case EventType::ButtonClicked:
-			case EventType::PlayerAction:
-			case EventType::PlaySound:
-				stateManager.PropagateEvent(event);
-				break;
-			case EventType::ExitProgram:
-				window.close();
-				break;
-			default:
-				break;
+				Event event = eventSystem.Get();
+				switch (event.type)
+				{
+				case EventType::StateChange:
+					stateManager.ChangeState(event.Value.State);
+					break;
+				case EventType::ButtonClicked:
+				case EventType::PlayerAction:
+				case EventType::PlaySound:
+					stateManager.PropagateEvent(event);
+					break;
+				case EventType::ExitProgram:
+					window.close();
+					break;
+				default:
+					break;
+				}
 			}
 		}
 		graphics.RenderScene();	// calls window.clear() and window.display()

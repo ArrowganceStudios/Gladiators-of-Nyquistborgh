@@ -26,7 +26,7 @@ public:
 	State& operator=(State const& other) = delete;
 
 	virtual void Init() = 0;
-	virtual void Update() = 0;
+	virtual void Update(const sf::Time& timeStep) = 0;
 	virtual void SetInput(const sf::Event ev) = 0;
 	void PushEvent(const Event ev) { eventQueue.push(ev); }
 

@@ -9,3 +9,4 @@
 
 #define WINDOW_WIDTH 800
 #define WINDOW_HEIGHT 600
+#define DEF_FPS 60

@@ -18,7 +18,7 @@ void MainMenu::Init()
 	quitGame.SetPosition({ 550, 500 });
 }
 
-void MainMenu::Update()
+void MainMenu::Update(const sf::Time& timeStep)
 {
 	newGame.Update();
 	quitGame.Update();

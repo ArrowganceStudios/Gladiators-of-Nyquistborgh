@@ -14,7 +14,7 @@ public:
 
 	void SetInput(const sf::Event ev) override;
 	void Init() override;
-	void Update() override;
+	void Update(const sf::Time& timeStep) override;
 private:
 	Button newGame;
 	Button quitGame;

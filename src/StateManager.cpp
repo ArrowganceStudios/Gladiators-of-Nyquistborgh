@@ -33,9 +33,9 @@ void StateManager::ChangeState(StateType type)
 	}
 }
 
-void StateManager::Update()
+void StateManager::Update(const sf::Time& timeStep)
 {
-	state->Update();
+	state->Update(timeStep);
 }
 
 void StateManager::PropagateEvent(const Event &ev)

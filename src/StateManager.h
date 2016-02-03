@@ -19,7 +19,7 @@ public:
 
 	void ChangeStateTo(std::function<State*()> getState);
 	void ChangeState(StateType type);
-	void Update();
+	void Update(const sf::Time& timeStep);
 	void PropagateEvent(const Event &ev);
 	void PropagateInput(const sf::Event &ev);
 private:

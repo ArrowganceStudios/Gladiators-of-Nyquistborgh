@@ -10,6 +10,21 @@ void GraphicComponent::SetPosition(sf::Vector2f pos)
 	graphics.SetPosition(spriteID, pos);
 }
 
+void GraphicComponent::SetScale(float factor)
+{
+	graphics.SetScale(spriteID, factor);
+}
+
+void GraphicComponent::SetRotation(float angle)
+{
+	graphics.SetRotation(spriteID, angle);
+}
+
+void GraphicComponent::SetOrigin(sf::Vector2f orig)
+{
+	graphics.SetOrigin(spriteID, orig);
+}
+
 void GraphicComponent::RequestTileset(uint8 depth, uint16 tileWidth, uint16 tileHeight, uint8 numOfTiles)
 {
 	spriteID = graphics.RequestTileset(graphicID, depth, tileWidth, tileHeight, numOfTiles);
