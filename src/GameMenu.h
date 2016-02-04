@@ -12,9 +12,8 @@ public:
 		enterShop(graphics, GraphicEngine::GraphicID::GameButtonEnterShop, [this] { this->RequestStateChange(StateType::Shop); }),
 		enterBattle(graphics, GraphicEngine::GraphicID::GameButtonEnterBattle, [this] { this->RequestStateChange(StateType::Battle); }),
 		goBack(graphics, GraphicEngine::GraphicID::GameButtonGoBack, [this] { this->RequestStateChange(StateType::MainMenu); }),
-		anim(graphicEngine)
+		anim(graphicEngine), buttons(&enterShop)
 	{
-
 	};
 	void Init() override;
 	void Update(const sf::Time& timeStep) override;
@@ -24,6 +23,14 @@ private:
 	Button enterShop;
 	Button enterBattle;
 	Button goBack;
+	
+	Button* buttons;
+
+	uint8 clouds_sid;
+
+	inline void InitializeButtons();
+	inline void InitGraphics();
+	inline void UpdateCloudAnimation();
 
 	//	OBJECT FOR TESTING NEW FUNCTIONALITIES
 	struct AnimationEffectTEST
@@ -45,7 +52,7 @@ private:
 		void Update(const sf::Time& timeStep)
 		{
 			factorAcc += timeStep.asSeconds();
-			animationComponent.Update();
+			animationComponent.Update(timeStep);
 			animationComponent.graphicComponent.SetPosition(position);
 			animationComponent.graphicComponent.SetRotation(50*sinf(factorAcc * 2));
 			animationComponent.graphicComponent.SetScale(1 + 0.2f*sinf(factorAcc));

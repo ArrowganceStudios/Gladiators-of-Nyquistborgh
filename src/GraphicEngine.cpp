@@ -4,7 +4,6 @@
 GraphicEngine::GraphicEngine(sf::RenderWindow & window, DataKeeper& dataKeeper)
 	: window(window), dataKeeper(dataKeeper), _spritesCount(0)
 {
-	
 }
 
 void GraphicEngine::LoadTextures()
@@ -12,6 +11,8 @@ void GraphicEngine::LoadTextures()
 	LoadTexture(GraphicID::IntroLogo,				"assets/intro/arrowgance_logo_small.jpg");
 
 	LoadTexture(GraphicID::MenuBackground,			"assets/ui/MainMenu.jpg");
+	LoadTexture(GraphicID::MenuBackgroundTest,		"assets/ui/MainMenu1366x768.png");
+	LoadTexture(GraphicID::MenuBackgroundClouds,	"assets/ui/clouds.jpg");
 	
 	LoadTexture(GraphicID::MenuButtonNewGame,		"assets/ui/MainMenuButtonNewGame.png");
 	LoadTexture(GraphicID::MenuButtonQuit,			"assets/ui/MainMenuButtonQuit.png");

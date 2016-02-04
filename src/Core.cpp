@@ -67,6 +67,8 @@ void Core::ToggleFullscreen()
 		window.create(sf::VideoMode(WINDOW_WIDTH, WINDOW_HEIGHT), "Gladiators of Nyquistborgh", sf::Style::Close | sf::Style::Titlebar);
 
 	fullscreen = !fullscreen;
+
+	//we have to make the logic sleep for until the window loads up into fullscreen
 }
 
 Core::Core()
@@ -82,13 +84,20 @@ Core::Core()
 	//int screenHeight = GetSystemMetrics(SM_CYSCREEN);
 }
 
+#define START_FULLSCREEN 0
+
 void Core::Run()
 {
 	//inits
 	dataKeeper.InitData(eventSystem, graphics);
 	graphics.Init();
-	//stateManager.ChangeState(StateType::Intro); //default starting state
-	stateManager.ChangeState(StateType::GameMenu); //let's don't waste time aight
+	stateManager.ChangeState(StateType::Intro); //default starting state
+	//stateManager.ChangeState(StateType::GameMenu); //let's not waste time aight
+
+#if START_FULLSCREEN
+	graphics.RenderScene();
+	ToggleFullscreen();
+#endif
 
 	Loop();
 }

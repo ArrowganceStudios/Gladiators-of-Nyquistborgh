@@ -24,6 +24,8 @@ public:
 		IntroLogo,
 
 		MenuBackground,
+		MenuBackgroundTest,
+		MenuBackgroundClouds,
 
 		MenuButtonNewGame,
 		MenuButtonQuit,

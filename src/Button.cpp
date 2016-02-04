@@ -3,8 +3,6 @@
 
 //I have a feeling that having constant size of buttons is
 //going to bring us pain in the future.
-#define BUTTON_WIDTH 240
-#define BUTTON_HEIGHT 80
 
 enum ButtonStates
 {
