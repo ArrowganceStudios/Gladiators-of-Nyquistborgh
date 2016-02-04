@@ -26,6 +26,7 @@ public:
 		MenuBackground,
 		MenuBackgroundTest,
 		MenuBackgroundClouds,
+		GameMenuBackground,
 
 		MenuButtonNewGame,
 		MenuButtonQuit,

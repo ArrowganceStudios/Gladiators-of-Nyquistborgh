@@ -13,7 +13,8 @@ void GraphicEngine::LoadTextures()
 	LoadTexture(GraphicID::MenuBackground,			"assets/ui/MainMenu.jpg");
 	LoadTexture(GraphicID::MenuBackgroundTest,		"assets/ui/MainMenu1366x768.png");
 	LoadTexture(GraphicID::MenuBackgroundClouds,	"assets/ui/clouds.jpg");
-	
+	LoadTexture(GraphicID::GameMenuBackground,		"assets/ui/GameMenu1366x768.png");
+
 	LoadTexture(GraphicID::MenuButtonNewGame,		"assets/ui/MainMenuButtonNewGame.png");
 	LoadTexture(GraphicID::MenuButtonQuit,			"assets/ui/MainMenuButtonQuit.png");
 	LoadTexture(GraphicID::GameButtonEnterBattle,	"assets/ui/GameMenuButtonEnterBattle.png");
