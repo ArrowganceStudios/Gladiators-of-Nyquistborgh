@@ -9,9 +9,9 @@ public:
 		: State(eventSystem, graphicEngine) {}
 
 	void Init() override;
-	void Update() override;
+	void Update(const sf::Time& timeStep) override;
 	void SetInput(const sf::Event ev) override;
 private:
 	uint8 logo_sid;
-	sf::Clock clock;
+	sf::Time timeElapsed;
 };

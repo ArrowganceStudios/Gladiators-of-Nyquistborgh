@@ -24,6 +24,9 @@ public:
 		IntroLogo,
 
 		MenuBackground,
+		MenuBackgroundTest,
+		MenuBackgroundClouds,
+		GameMenuBackground,
 
 		MenuButtonNewGame,
 		MenuButtonQuit,
@@ -42,6 +45,15 @@ public:
 
 	void SetPosition(uint8 sid, sf::Vector2f pos) { 
 		sprites[sid].sprite.setPosition(pos);
+	}
+	void SetScale(uint8 sid, float factor) {
+		sprites[sid].sprite.setScale(factor, factor);
+	}
+	void SetRotation(uint8 sid, float angle) {
+		sprites[sid].sprite.setRotation(angle);
+	}
+	void SetOrigin(uint8 sid, sf::Vector2f orig) {
+		sprites[sid].sprite.setOrigin(orig);
 	}
 	void SetTexture(uint8 sid, GraphicID gid) { 
 		sprites[sid].sprite.setTexture(textures[(int)gid]);
