@@ -4,7 +4,7 @@
 
 void StateManager::ChangeStateTo(std::function<State*()> getState)
 {
-	graphics.ResetSprites();
+	graphics.Reset();
 	state = getState();
 	state->Init();
 }

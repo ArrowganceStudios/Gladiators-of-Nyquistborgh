@@ -17,8 +17,6 @@ public:
 	GraphicEngine(GraphicEngine const&) = delete;
 	GraphicEngine& operator=(GraphicEngine const&) = delete;
 
-	void LoadTextures();
-
 	enum class GraphicID
 	{
 		IntroLogo,
@@ -35,6 +33,13 @@ public:
 		GameButtonGoBack,
 
 		TestColorAnim,
+
+		ENUM_SIZE
+	};
+
+	enum class FontID
+	{
+		Default,
 
 		ENUM_SIZE
 	};
@@ -68,6 +73,7 @@ public:
 
 	uint8 RequestSprite(GraphicID gid, uint8 depth);
 	uint8 RequestTileset(GraphicID gid, uint8 depth, uint16 tileWidth, uint16 tileHeight, uint8 numOfTiles);
+	sf::Text* RequestText(const sf::Vector2f &position, const sf::String &string, FontID font = FontID::Default);
 	void ChangeTile(uint8 sid, uint8 tileNum);
 
 	struct Renderable
@@ -85,32 +91,27 @@ public:
 		}
 	};
 
-	void ResetSprites()
-	{
-		for (int i = 0; i < MAX_SPRITES; ++i)
-		{
-			sprites[i].sprite.setPosition({ 0, 0 }); //prolly to be removed since most of the objects set their 
-													//position to non-default one anyway
-			sprites[i].sprite.setColor(sf::Color::White);
-		}
-
-		renderables.clear();
-		_spritesCount = 0;
-	}
-
+	void Reset();
 	void Init();
-
 	void RenderScene();
+
 private:
 	sf::RenderWindow& window;
 	sf::Texture* textures;
 	Tileset* sprites;
+	sf::Font* fonts;
+	sf::Text* texts;
 	std::multiset<Renderable, DepthTester> renderables; //to be changed to radix sort later
 	uint8 _spritesCount;
 	uint8 _texturesCount;
+	uint8 _fontsCount;
+	uint8 _textsCount;
 	DataKeeper& dataKeeper;
 
+	void LoadTextures();
 	void LoadTexture(GraphicID gid, const char* path);
+	void LoadFonts();
+	void LoadFont(const char* path);
 	uint8 CreateSprite(GraphicID gid);
 	uint8 CreateTileset(GraphicID gid, uint16 tileWidth, uint16 tileHeight, uint8 numOfTiles);
 };

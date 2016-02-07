@@ -18,6 +18,9 @@ void Intro::Init()
 												//and conjunction using flags
 	//135, 220
 	timeElapsed = sf::Time::Zero;
+	txtVersion = graphics.RequestText({ 0, 0 }, "Gladiator of Nyquistborgh v0.1");
+	txtVersion->setColor(sf::Color::Black);
+	txtVersion->setCharacterSize(12);
 }
 
 void Intro::Update(const sf::Time& timeStep)

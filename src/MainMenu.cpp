@@ -14,6 +14,18 @@ void MainMenu::Init()
 	//we could use graphic component, but in this case it's not neccessary
 	InitGraphics();
 	InitializeButtons();
+
+	//	Testing texts
+	txt1 = graphics.RequestText({ 50, 50 }, "SAMPLE TEXT1");
+	txt1->setCharacterSize(10);
+	txt1->setColor(sf::Color::Red);
+	txt2 = graphics.RequestText({ 100, 100 }, "SAMPLE TEXT2");
+	txt2->setCharacterSize(20);
+	txt2->setColor(sf::Color::Green);
+	txt3 = graphics.RequestText({ 150, 150 }, "SAMPLE TEXT3");
+	txt3->setCharacterSize(30);
+	txt3->setColor(sf::Color::Blue);
+
 }
 
 void MainMenu::Update(const sf::Time& timeStep)

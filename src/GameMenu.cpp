@@ -11,6 +11,12 @@ void GameMenu::Init()
 	InitGraphics();
 	InitializeButtons();
 
+	//	Testing texts
+	txt1 = graphics.RequestText({ 200, 500 }, "SAMPLE TEXT1");
+	txt2 = graphics.RequestText({ 500, 200 }, "SAMPLE TEXT2");
+	txt3 = graphics.RequestText({ 500, 500 }, "SAMPLE TEXT3");
+
+
 #if ANIM_BOX_DEBUG
 	anim.animationComponent.RequestTileset(2, 64, 64, 6);
 	anim.animationComponent.graphicComponent.SetOrigin({ 32, 32 });

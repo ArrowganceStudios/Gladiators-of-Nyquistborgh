@@ -29,6 +29,19 @@ void DataKeeper::InitData(EventSystem & evtSystem, GraphicEngine & grphEngine)
 		texture = new (texture) sf::Texture();
 		texture++;
 	}
+	sf::Text* text = GetTextTable();
+	for (uint8 i = 0; i < MAX_TEXTS; ++i)
+	{
+		text = new (text) sf::Text();
+		text++;
+	}
+	sf::Font* font = GetFontTable();
+	for (uint8 i = 0; i < MAX_FONTS; ++i)
+	{
+		font = new (font) sf::Font();
+		font++;
+	}
+
 	Intro *intro = GetIntro();
 	intro = new (intro) Intro(evtSystem, grphEngine);
 	MainMenu *mm = GetMainMenu();
