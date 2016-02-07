@@ -22,6 +22,8 @@ private:
 
 	Button* buttons;
 
+	sf::Text *txt1, *txt2, *txt3;
+
 	uint8 clouds_sid;
 
 	inline void InitializeButtons();

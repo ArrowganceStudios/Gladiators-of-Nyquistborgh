@@ -14,4 +14,5 @@ public:
 private:
 	uint8 logo_sid;
 	sf::Time timeElapsed;
+	sf::Text* txtVersion;
 };

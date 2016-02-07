@@ -24,6 +24,8 @@ public:
 	Tileset *GetSpriteTable() { return GameData->sprites; }
 	sf::Texture *GetTextureTable() { return GameData->textures; }
 	sf::Sound *GetSoundTable() { return GameData->sounds; }
+	sf::Text *GetTextTable() { return GameData->texts; }
+	sf::Font *GetFontTable() { return GameData->fonts; }
 	Intro *GetIntro() { return &(GameData->intro); }
 	MainMenu *GetMainMenu() { return &(GameData->mainMenu); }
 	GameMenu *GetGameMenu() { return &(GameData->gameMenu); }
@@ -32,10 +34,10 @@ private:
 	struct Data
 	{
 		Tileset sprites[MAX_SPRITES];
-		//sf::Sprite sprites[MAX_SPRITES];  //	TODO: Check frequency of accesses by sprites
-		sf::Texture textures[MAX_TEXTURES];	//edit: it's high but since sf::sprite uses
-											//pointer to texture we can't optimize it anyway
+		sf::Texture textures[MAX_TEXTURES];
 		sf::Sound sounds[MAX_SOUNDS];
+		sf::Text texts[MAX_TEXTS];
+		sf::Font fonts[MAX_FONTS];
 		Intro intro;
 		MainMenu mainMenu;
 		GameMenu gameMenu;
